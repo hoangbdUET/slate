@@ -4,12 +4,13 @@ Add / Edit / Info / Delete Project
 ### HTTP Request
 `POST http://host/project/new`
 #### Payload Params
-```text
-name: String,
+
+
+
+`name: String,
 company: String,
 department: String,
-description: String
-```
+description: String`
 #### Sample Request
 ```json
 {

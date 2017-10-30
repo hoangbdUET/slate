@@ -7,170 +7,200 @@ toc_footers:
 
 includes:
   - errors
-  - project
-
+  
 search: true
 ---
 
 # Introduction
 
-Day la intro
-
-# Authentication
-
-> To authorize, use this code:
-
-Huong dan authen
-
-`Authorization: meowmeowmeow`
+Well Insight User manager 
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+BASE_URL = <code>http://user.dev.sflow.me</code>
 </aside>
 
-# Kittens
+* List User
+* Edit User
+* Insert User
+* Active/Deactive User
+* Delete User
 
-## Get All Kittens
+# User Manager
 
-> The above command returns JSON structured like this:
+Manager user
 
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
-
-This endpoint retrieves all kittens.
+## Get all User
 
 ### HTTP Request
 
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
+> The success response:
 
 ```json
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+    "result": true,
+    "content": [
+        {
+            "idUser": 5,
+            "username": "hoangbd1",
+            "password": "123456",
+            "status": "Actived",
+            "role": 2,
+            "email": "",
+            "fullname": "",
+            "createdAt": "2017-10-25T09:09:23.000Z",
+            "updatedAt": "2017-10-25T09:09:23.000Z"
+        }
+    ]
 }
 ```
 
-This endpoint retrieves a specific kitten.
+> The error response:
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+```
+None
+```
+
+* ROUTER : `POST : BASE_URL/user/list`
+
+* PAYLOAD Exapmle : `NONE`
+
+## Get a User by idUser
 
 ### HTTP Request
 
-`GET http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
-
-## Delete a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
-
-> The above command returns JSON structured like this:
+> The success response:
 
 ```json
 {
-  "id": 2,
-  "deleted" : ":("
+    "result": true,
+    "content": {
+        "idUser": 5,
+        "username": "hoangbd1",
+        "password": "123456",
+        "status": "Actived",
+        "role": 2,
+        "email": "",
+        "fullname": "",
+        "createdAt": "2017-10-25T09:09:23.000Z",
+        "updatedAt": "2017-10-25T09:09:23.000Z"
+    }
+}
+```
+> The error response:
+
+* ROUTER : `POST : BASE_URL/user/info`
+
+* PAYLOAD Exapmle : 
+```json
+{
+    "idUser" : 5
 }
 ```
 
-This endpoint retrieves a specific kitten.
+## Edit a User
 
 ### HTTP Request
 
-`DELETE http://example.com/kittens/<ID>`
+> The success response:
 
-### URL Parameters
+```json
+{
+    "result": true,
+    "content": {
+        "idUser": 5,
+        "username": "hoangbd1",
+        "password": "123456",
+        "status": "Actived",
+        "role": 2,
+        "email": "",
+        "fullname": "",
+        "createdAt": "2017-10-25T09:09:23.000Z",
+        "updatedAt": "2017-10-25T09:09:23.000Z"
+    }
+}
+```
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
+* ROUTER : `POST : BASE_URL/user/edit`
 
+* PAYLOAD Exapmle : 
+
+```json
+{
+		"idUser": 5,
+        "username": "editna",
+        "password": "passna",
+        "status": "Actived",
+        "role": 2,
+        "email": "",
+        "fullname": "Sua na`"
+}
+```
+
+## Delete a User
+
+### HTTP Request
+
+* ROUTER : `POST : BASE_URL/user/delete`
+
+* PAYLOAD Exapmle : 
+
+```json
+{
+    "idUser" : 5
+}
+```
+
+> The success response:
+
+```json
+{
+    "result": true,
+    "content": {
+        "idUser": 5,
+        "username": "editna",
+        "password": "passna",
+        "status": "Actived",
+        "role": 2,
+        "email": "",
+        "fullname": "Sua na`"
+    }
+}
+```
+
+## Insert a User
+
+### HTTP Request
+
+> The success response:
+
+```json
+{
+    "result": true,
+    "content": {
+        "idUser": 6,
+        "username": "hoangbd",
+        "password": "password",
+        "status": "Actived",
+        "role": 2,
+        "email": "",
+        "fullname": "Sua na`",
+        "updatedAt": "2017-10-30T15:57:36.582Z",
+        "createdAt": "2017-10-30T15:57:36.582Z"
+    }
+}
+```
+
+* ROUTER : `POST : BASE_URL/user/new`
+
+* PAYLOAD Exapmle : 
+
+```json
+{
+        "username": "hoangbd",
+        "password": "password",
+        "status": "Actived",
+        "role": 2,
+        "email": "",
+        "fullname": "Sua na`"
+}
+```
